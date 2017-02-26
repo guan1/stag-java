@@ -282,6 +282,11 @@ public class TypeAdapterGenerator extends AdapterGenerator {
                         '\n' +
                         "\treader.endObject();\n");
 
+        builder.addCode("\n" +
+                "\tif (object instanceOf PostCreation) {\n" +
+                "\t\tobject.objectCreated(reader);" +
+                "\n\t}");
+
         for (String nonNullField : nonNullFields) {
             builder.addCode("\n\tif (object." + nonNullField + " == null) {");
             builder.addCode("\n\t\tthrow new java.io.IOException(\"" + nonNullField + " cannot be null\");");
