@@ -294,7 +294,7 @@ public class TypeAdapterGenerator extends AdapterGenerator {
             builder.addCode("\n\t}\n\n");
         }
 
-        builder.addCode("\treturn object;\n");
+        builder.addCode("\n\treturn object;\n");
 
         return builder.build();
     }
