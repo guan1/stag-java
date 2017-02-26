@@ -34,6 +34,7 @@ import com.squareup.javapoet.ParameterizedTypeName;
 import com.squareup.javapoet.TypeName;
 import com.squareup.javapoet.TypeSpec;
 import com.squareup.javapoet.TypeVariableName;
+import com.vimeo.stag.PostCreation;
 import com.vimeo.stag.processor.generators.model.AnnotatedClass;
 import com.vimeo.stag.processor.generators.model.ClassInfo;
 import com.vimeo.stag.processor.generators.model.SupportedTypesModel;
@@ -283,9 +284,9 @@ public class TypeAdapterGenerator extends AdapterGenerator {
                         "\treader.endObject();\n");
 
         builder.addCode("\n" +
-                "\tif (object instanceOf PostCreation) {\n" +
-                "\t\tobject.objectCreated(reader);" +
-                "\n\t}");
+                "\tif (object instanceof $T) {\n" +
+                "\t\t((PostCreation)object).objectCreated(reader);" +
+                "\n\t}", PostCreation.class);
 
         for (String nonNullField : nonNullFields) {
             builder.addCode("\n\tif (object." + nonNullField + " == null) {");

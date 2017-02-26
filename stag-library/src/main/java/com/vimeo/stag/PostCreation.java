@@ -1,4 +1,4 @@
-package com.vimeo.stag.processor.generators.model;
+package com.vimeo.stag;
 
 import com.google.gson.stream.JsonReader;
 
